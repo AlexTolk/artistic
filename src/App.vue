@@ -74,6 +74,8 @@
   import description from './components/description.vue';
   import testimonies from './components/testimonies.vue';
 
+
+
 </script>
 <style scoped>
   nav {

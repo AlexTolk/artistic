@@ -1,3 +1,36 @@
+<script>
+  import {ref} from 'vue'
+  export default {
+    name: 'PriceCalculator',
+    props: {
+
+    },
+    data() {
+      return {
+        price: 0,
+        typePrice: 0,
+        surface: 0
+      }
+    },
+    methods: {
+      calculatePrice() {
+        let basePrice = parseInt(this.typePrice) || 0;
+        let surfacePrice = this.surface * 50;
+
+        this.price = basePrice + surfacePrice;
+
+      },
+      handleTypeChange(event) {
+        this.typePrice = event.target.value;
+        this.calculatePrice();
+      },
+      handleSurfaceChange(event) {
+        this.surface = event.target.value;
+        this.calculatePrice();
+      },
+    }
+  }
+</script>
 <template>
   <div class="calculator">
     <h3>Рассчитайте стоимость ремонта</h3>
@@ -6,13 +39,13 @@
         <h4>Тип санузла:</h4>
         <form>
           <label for="combined">Совмещенный</label>
-          <input type="radio" name="type" id="combined">
+          <input type="radio" name="type" id="combined" value="100" v-model="typePrice" @change="handleTypeChange">
           <label for="split">Раздельный</label>
-          <input type="radio" name="type" id="split">
+          <input type="radio" name="type" id="split" value="200" v-model="typePrice" @change="handleTypeChange">
           <label for="bathroom">Ванная комната</label>
-          <input type="radio" name="type" id="bathroom">
-          <label for="surface" id="sur">Площадь:</label>
-          <input type="number">
+          <input type="radio" name="type" id="bathroom" value="300" v-model="typePrice" @change="handleTypeChange">
+          <label for="surface" id="sur">Площадь:</label >
+          <input type="number" v-model="surface" @change="handleTypeChange">
         </form>
       </div>
       <div class="dropdowns">
@@ -60,6 +93,7 @@
           </ul>
         </div>
       </div>
+      <h3> Цена: {{ price }}</h3>
       <div class="calc-form">
         <h3>Осталось заполнить форму</h3>
         <div class="calc-form-content">
