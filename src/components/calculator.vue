@@ -45,7 +45,7 @@
           <label for="bathroom">Ванная комната</label>
           <input type="radio" name="type" id="bathroom" value="300" v-model="typePrice" @change="handleTypeChange">
           <label for="surface" id="sur">Площадь:</label >
-          <input type="number" v-model="surface" @change="handleTypeChange">
+          <input type="number" v-model="surface" @change="handleSurfaceChange">
         </form>
       </div>
       <div class="dropdowns">
