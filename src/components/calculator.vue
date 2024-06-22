@@ -1,24 +1,60 @@
 <script>
-  import {ref} from 'vue'
+  import { ref } from 'vue';
+
   export default {
     name: 'PriceCalculator',
-    props: {
-
-    },
     data() {
       return {
         price: 0,
         typePrice: 0,
-        surface: 0
-      }
+        surface: 0,
+        extraServices: {
+          toilet: false,
+          shower: false,
+          bidet: false,
+          shelf: false,
+          heatedFloor: false,
+          drain: false,
+          heater: false,
+        },
+        extraServicePrices: {
+          toilet: 100,
+          shower: 200,
+          bidet: 150,
+          shelf: 120,
+          heatedFloor: 250,
+          drain: 80,
+          heater: 300,
+        },
+        wallMaterial: 'tiles1',
+        floorMaterial: 'tiles1',
+        ceilingMaterial: 'tiles1',
+        materialPrices: {
+          tiles1: 50,
+          tiles2: 70,
+          tiles3: 90,
+          tiles4: 110,
+        }
+      };
     },
     methods: {
       calculatePrice() {
         let basePrice = parseInt(this.typePrice) || 0;
-        let surfacePrice = this.surface * 50;
+        let surfacePrice = this.surface * 50; // Assuming each square meter costs 50 units
 
-        this.price = basePrice + surfacePrice;
+        let extraPrice = Object.keys(this.extraServices).reduce((sum, service) => {
+          return sum + (this.extraServices[service] ? this.extraServicePrices[service] : 0);
+        }, 0);
 
+        let wallPrice = this.materialPrices[this.wallMaterial] * this.surface;
+        let floorPrice = this.materialPrices[this.floorMaterial] * this.surface;
+        let ceilingPrice = this.materialPrices[this.ceilingMaterial] * this.surface;
+
+        this.price = basePrice + surfacePrice + extraPrice + wallPrice + floorPrice + ceilingPrice;
+      },
+      toggleService(service) {
+        this.extraServices[service] = !this.extraServices[service];
+        this.calculatePrice();
       },
       handleTypeChange(event) {
         this.typePrice = event.target.value;
@@ -28,9 +64,25 @@
         this.surface = event.target.value;
         this.calculatePrice();
       },
+      handleDropdownChange(event, materialType) {
+        this[materialType] = event.target.value;
+        this.calculatePrice();
+      }
+    },
+    watch: {
+      typePrice() {
+        this.calculatePrice();
+      },
+      surface() {
+        this.calculatePrice();
+      },
+      extraServices() {
+        this.calculatePrice();
+      }
     }
   }
 </script>
+
 <template>
   <div class="calculator">
     <h3>Рассчитайте стоимость ремонта</h3>
@@ -44,62 +96,62 @@
           <input type="radio" name="type" id="split" value="200" v-model="typePrice" @change="handleTypeChange">
           <label for="bathroom">Ванная комната</label>
           <input type="radio" name="type" id="bathroom" value="300" v-model="typePrice" @change="handleTypeChange">
-          <label for="surface" id="sur">Площадь:</label >
-          <input type="number" v-model="surface" @change="handleSurfaceChange">
+          <label for="surface" id="sur">Площадь:</label>
+          <input type="number" v-model="surface" @input="handleSurfaceChange">
         </form>
       </div>
       <div class="dropdowns">
         <div class="dropdown-item">
-          <label for="">Материал отделки стен</label>
-          <select name="walls" id="wall-select">
+          <label for="wall-select">Материал отделки стен</label>
+          <select name="walls" id="wall-select" v-model="wallMaterial" @change="handleDropdownChange($event, 'wallMaterial')">
             <option value="tiles1">Плитка 1</option>
             <option value="tiles2">Плитка 2</option>
             <option value="tiles3">Плитка 3</option>
             <option value="tiles4">Плитка 4</option>
           </select>
-        </div class="dropdown-item">
+        </div>
         <div class="dropdown-item">
-          <label for="">Материал отделки пола</label>
-          <select name="floors" id="floor-select">
+          <label for="floor-select">Материал отделки пола</label>
+          <select name="floors" id="floor-select" v-model="floorMaterial" @change="handleDropdownChange($event, 'floorMaterial')">
             <option value="tiles1">Плитка 1</option>
             <option value="tiles2">Плитка 2</option>
             <option value="tiles3">Плитка 3</option>
             <option value="tiles4">Плитка 4</option>
           </select>
-        </div class="dropdown-item">
+        </div>
         <div class="dropdown-item">
-          <label for="">Материал отделки потолка</label>
-          <select name="ceiling" id="ceiling-select">
+          <label for="ceiling-select">Материал отделки потолка</label>
+          <select name="ceiling" id="ceiling-select" v-model="ceilingMaterial" @change="handleDropdownChange($event, 'ceilingMaterial')">
             <option value="tiles1">Плитка 1</option>
             <option value="tiles2">Плитка 2</option>
             <option value="tiles3">Плитка 3</option>
             <option value="tiles4">Плитка 4</option>
           </select>
-        </div class="dropdown-item">
+        </div>
       </div>
       <div class="extra">
         <h4>Дополнительные услуги</h4>
         <div class="extra-lists">
           <ul>
-            <li><label for="toilet">Подвесной унитаз</label><input type="checkbox" name="extra" id="toilet"></li>
-            <li><label for="shower">Душевая кабина</label><input type="checkbox" name="extra" id="shower"></li>
-            <li><label for="bidet">Гигиенический душ (биде)</label><input type="checkbox" name="extra" id="bidet"></li>
-            <li><label for="shelf">Конструкция из ГКП (ниши/полки)</label><input type="checkbox" name="extra" id="shelf"></li>
+            <li><label for="toilet">Подвесной унитаз</label><input type="checkbox" name="extra" id="toilet" v-model="extraServices.toilet" @change="handleCheckboxChange('toilet')"></li>
+            <li><label for="shower">Душевая кабина</label><input type="checkbox" name="extra" id="shower" v-model="extraServices.shower" @change="handleCheckboxChange('shower')"></li>
+            <li><label for="bidet">Гигиенический душ (биде)</label><input type="checkbox" name="extra" id="bidet" v-model="extraServices.bidet" @change="toggleService('bidet')"></li>
+            <li><label for="shelf">Конструкция из ГКП (ниши/полки)</label><input type="checkbox" name="extra" id="shelf" v-model="extraServices.shelf" @change="toggleService('shelf')"></li>
           </ul>
           <ul>
-            <li><label for="heated-floor">Теплый пол</label><input type="checkbox" name="extra" id="heated-floor"></li>
-            <li><label for="drain">Люк "неведимка" под плитку</label><input type="checkbox" name="extra" id="drain"></li>
-            <li><label for="heater">Водонагреватель</label><input type="checkbox" name="extra" id="heater"></li>
+            <li><label for="heated-floor">Теплый пол</label><input type="checkbox" name="extra" id="heated-floor" v-model="extraServices.heatedFloor" @change="toggleService('heatedFloor')"></li>
+            <li><label for="drain">Люк "неведимка" под плитку</label><input type="checkbox" name="extra" id="drain" v-model="extraServices.drain" @change="toggleService('drain')"></li>
+            <li><label for="heater">Водонагреватель</label><input type="checkbox" name="extra" id="heater" v-model="extraServices.heater" @change="toggleService('heater')"></li>
           </ul>
         </div>
       </div>
-      <h3> Цена: {{ price }}</h3>
+      <h3>{{ price }}</h3>
       <div class="calc-form">
         <h3>Осталось заполнить форму</h3>
         <div class="calc-form-content">
           <p>Вы узнаете стоимость ремонта и получите скидку 10%</p>
           <input type="text" name="name" id="name">
-          <input type="tel" name="" id="phone">
+          <input type="tel" name="phone" id="phone">
           <button>Рассчитать стоимость</button>
         </div>
       </div>
