@@ -75,4 +75,11 @@
   .prices-grid ul li .bold-price{
     font-weight: 500;
   }
+
+  @media only screen and (max-width: 600px) {
+    .prices .prices-grid {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 </style>

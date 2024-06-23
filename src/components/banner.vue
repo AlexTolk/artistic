@@ -26,4 +26,10 @@
     font-size: 2.5em;
     margin-top: 0;
   }
+
+  @media only screen and (max-width: 600px) {
+    banner h1 {
+      font-size: 1em;
+    }
+  }
 </style>

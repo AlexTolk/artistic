@@ -82,4 +82,19 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 1.2em;
   }
+
+  @media only screen and (max-width:600px) {
+    .short-form-section {
+      max-width: 100vw;
+    }
+    .img-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0;
+    }
+    img {
+      display: none;
+    }
+  }
 </style>

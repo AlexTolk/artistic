@@ -222,4 +222,14 @@
     box-shadow: 0 0 10px 3px #DBAF15;
     border-radius: 50px;
   }
+  @media only screen and (max-width: 600px) {
+    .portfolio .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin: 0 5vw;
+    }
+    .card-big {
+      flex-direction: column;
+    }
+  }
 </style>

@@ -1,16 +1,35 @@
 <template>
   <div class="swiper-container">
+    <h3>Отзывы</h3>
     <swiper
     :modules="modules"
     :slides-per-view="3"
     :space-between="50"
     navigation
     :pagination="{ clickable: true }"
+    :breakpoints="{
+      '@0.00': {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      },
+      '@0.75': {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      '@1.00': {
+        slidesPerView: 3,
+        spaceBetween: 40,
+      },
+      '@1.50': {
+        slidesPerView: 3,
+        spaceBetween: 50,
+      },
+    }"
     :scrollbar="{ draggable: true }"
     @swiper="onSwiper"
     @slideChange="onSlideChange">
       <swiper-slide v-for="(image, index) in images" >
-        <img :src=image.src alt="">
+        <img :src=image.src alt=""><caption> {{ image.caption }}</caption>
       </swiper-slide>
     </swiper>
   </div>
@@ -36,17 +55,15 @@
     },
     data() {
       return {
-        images: [
-        { src: 'https://images.unsplash.com/photo-1515161318750-781d6122e367?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2V4eSUyMGdpcmx8ZW58MHx8MHx8fDA%3D', caption: 'Bitch 1' },
-        { src: 'https://images.unsplash.com/photo-1583900985737-6d0495555783?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c2V4eSUyMGdpcmx8ZW58MHx8MHx8fDA%3D', caption: 'Bitch 2' },
-        { src: 'https://images.unsplash.com/photo-1557244056-ac3033d17d9a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c2V4eSUyMGdpcmx8ZW58MHx8MHx8fDA%3D', caption: 'Bitch 3' },
-        { src: 'https://images.unsplash.com/photo-1574539602047-548bf9557352?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c2V4eSUyMGdpcmx8ZW58MHx8MHx8fDA%3D', caption: 'Bitch 4' },
-        { src: 'https://images.unsplash.com/photo-1525672716948-1f0bb9c49883?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHNleHklMjBnaXJsfGVufDB8fDB8fHww', caption: 'Bitch 5' },
-        { src: 'https://images.unsplash.com/photo-1568819317551-31051b37f69f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHNleHklMjBnaXJsfGVufDB8fDB8fHww', caption: 'Bitch 6' },
-        { src: 'https://images.unsplash.com/photo-1565294124524-200bb738cdb7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHNleHklMjBnaXJsfGVufDB8fDB8fHww', caption: 'Bitch 7' },
-        { src: 'https://images.unsplash.com/flagged/photo-1556151994-b611e5ab3675?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHNleHklMjBnaXJsfGVufDB8fDB8fHww', caption: 'Bitch 8' },
-        { src: 'https://images.unsplash.com/photo-1582639590011-f5a8416d1101?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmlraW5pJTIwZ2lybHxlbnwwfHwwfHx8MA%3D%3D', caption: 'Bitch 9' },
-      ]
+          images: [
+          { src: 'https://images.unsplash.com/photo-1616537937163-387d3f079de8?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', caption: 'От Мизаила Сергеевича' },
+          { src: 'https://plus.unsplash.com/premium_photo-1679121588089-2f25bce9e1ee?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', caption: 'От Нины Петровны' },
+          { src: 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', caption: 'От Марины Романовны' },
+          { src: 'https://images.unsplash.com/photo-1604014237256-11d475e2a2d8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', caption: 'От Прокопа Укроповича' },
+          { src: 'https://images.unsplash.com/photo-1576698483491-8c43f0862543?q=80&w=1799&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', caption: 'От Герасима Тургеневича' },
+          { src: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', caption: 'От Акакия Акакиевича' },
+          { src: 'https://unsplash.com/photos/white-ceramic-sink-with-faucet-RfXkG1qm1RI', caption: 'От Базыра Сада-Батуевича' }
+        ]
       }
     },
     setup() {
@@ -66,14 +83,60 @@
 </script>
 <style>
   .swiper-container {
-    margin: 0 10vh;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  h3 {
+    font-family: 'Cormorant Garamond';
+    font-size: 3em;
+    line-height: 0.9em;
+    font-weight: 400;
+    margin: 15vh;
   }
   .swiper {
-    width: 60vw;
+    width: 90vw;
     height: 60vh;
     overflow: hidden;
   }
   .swiper img {
-    height: 100%
+    height: 90%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50px;
+    position: relative;
+  }
+  caption {
+    background-color: #D3B99F;
+    width: 100%;
+    position: absolute;
+    bottom: 40px;
+    padding: 40px 0;
+    border-radius: 0 0 50px 50px;
+    font-family: 'Montserrat';
+    font-size: 1.2em;
+    color: #fff;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .swiper {
+    width: 70vw;
+    height: 40vh;
+    overflow: hidden;
+    }
+
+    caption {
+    background-color: #D3B99F;
+    width: 100%;
+    position: absolute;
+    bottom: 30px;
+    padding: 40px 0;
+    border-radius: 0 0 50px 50px;
+    font-family: 'Montserrat';
+    font-size: 1.2em;
+    color: #fff;
+    }
   }
 </style>

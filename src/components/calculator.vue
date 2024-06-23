@@ -286,4 +286,41 @@
     box-shadow: 0 0 10px 1px #DBAF15;
     cursor: pointer;
   }
+
+  @media only screen and (max-width:600px) {
+    .calculator-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      max-width: 100vw;
+    }
+    .radio-buttons {
+      flex-direction: column;
+    }
+    .radio-buttons form{
+      display: flex;
+      flex-direction: column;
+    }
+    .dropdowns {
+      flex-direction: column;
+      max-width: 90vw;
+    }
+    .extra-lists {
+      flex-direction: column;
+    }
+    .calc-form {
+      padding: 0;
+      margin:0;
+      max-width: 100vw;
+    }
+    .calculator .calc-form h3 {
+      font-size: 1.5em;
+    }
+    .calculator .calc-form .calc-form-content {
+      display: flex;
+      flex-direction: column;
+      max-width: 80vw;
+    }
+  }
 </style>

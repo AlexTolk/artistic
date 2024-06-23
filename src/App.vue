@@ -11,8 +11,8 @@
         <li>Примеры работ</li>
         <li>Новости</li>
         <li>Отзывы</li>
-        <li><strong>+8(950) 019 - 19 - 19</strong></li>
       </ul>
+      <p><strong>+8(950) 019 - 19 - 19</strong></p>
     </nav>
   </header>
   <main>
@@ -123,5 +123,14 @@
     padding: 0;
     margin-top: 0;
     font-size: 1.5em;
+  }
+
+  @media only screen and (max-width: 600px) {
+    ul li{
+      display: none;
+    }
+    footer {
+      flex-direction: column;
+    }
   }
 </style>

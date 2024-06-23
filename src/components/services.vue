@@ -53,4 +53,11 @@
     font-size: 1.2em;
     padding: 10px 0;
   }
+
+  @media only screen and (max-width:600px) {
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
 </style>

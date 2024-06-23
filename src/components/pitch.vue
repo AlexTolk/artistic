@@ -16,7 +16,7 @@
     </div>
 </template>
 <style>
-    .pitch {
+  .pitch {
     height: 70vh;
     width: 80vw;
     margin: 0 auto;
@@ -60,5 +60,29 @@
     color: #DBAF15;
     text-decoration: none;
     padding-top: 10px;
+  }
+
+  @media only screen and (max-width:600px) {
+    .pitch {
+      padding: 40px;
+    }
+    .pitch h4 {
+      font-size: 1.5em;
+    }
+
+    .pitch-points {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .point {
+      margin: 0;
+      width: 30vw;
+    }
+    .point h5 {
+      font-size: 1.5em;
+    }
+    .point p {
+      font-size: 1em;
+    }
   }
 </style>
