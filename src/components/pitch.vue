@@ -12,7 +12,7 @@
         <div class="point"><h5>Скорость</h5><p>Ванна под ключ от <strong>12 дней</strong></p></div>
         <div class="point"><h5>Опыт</h5><p>Успешно трудимся начиная с <strong>2007 года</strong></p></div>
       </div>
-      <a href="">Оставить заявку</a>
+      <a href="">Оставить заявку→</a>
     </div>
 </template>
 <style>
@@ -23,6 +23,9 @@
     background-color: #F4E8DA;
     padding: 50px;
     border-radius: 0 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .pitch-points {
     display: flex;
@@ -60,16 +63,19 @@
     color: #DBAF15;
     text-decoration: none;
     padding-top: 10px;
+    text-align: center;
   }
 
   @media only screen and (max-width:600px) {
     .pitch {
-      padding: 40px;
+      padding: 38px;
     }
     .pitch h4 {
       font-size: 1.5em;
     }
-
+    .pitch a {
+      font-size: 0.8em;
+    }
     .pitch-points {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -82,7 +88,7 @@
       font-size: 1.5em;
     }
     .point p {
-      font-size: 1em;
+      font-size: 0.8em;
     }
   }
 </style>

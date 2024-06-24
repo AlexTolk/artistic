@@ -28,8 +28,15 @@
   }
 
   @media only screen and (max-width: 600px) {
-    banner h1 {
+    .banner {
+      height: 60vh;
+    }
+    .banner h1 {
+      font-size: 2em;
+    }
+    .banner h4 {
       font-size: 1em;
     }
+
   }
 </style>

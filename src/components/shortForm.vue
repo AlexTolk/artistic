@@ -84,17 +84,24 @@
   }
 
   @media only screen and (max-width:600px) {
-    .short-form-section {
-      max-width: 100vw;
+    .short-form-section h3 {
+      font-size: 2em;
+    }
+    .img {
+      display: none;
     }
     .img-form {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 0;
+      padding: 40px;
+      border-radius: 0;
     }
-    img {
-      display: none;
+    .img-form form {
+      width: 100%;
+    }
+    .img-form form label{
+      padding-bottom: 10px;
     }
   }
 </style>
