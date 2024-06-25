@@ -145,7 +145,6 @@
           </ul>
         </div>
       </div>
-      <h3>{{ price }}</h3>
       <div class="calc-form">
         <h3>Осталось заполнить форму</h3>
         <div class="calc-form-content">

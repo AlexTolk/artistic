@@ -1,137 +1,47 @@
-<script></script>
+<script>
+ export default {
+  data() {
+    return {
+      cards: [
+        {title: 'Ремонт санузла в стиле лофт', topImgs: ['https://images.unsplash.com/photo-1595579987159-32ca7b85e0e2?q=80&w=360&auto=format&fit=cover', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=360&auto=format&fit=contain'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15'},
+        {title: 'Ремонт ванной комнаты и санузла', topImgs: ['https://images.unsplash.com/photo-1553444835-65ddad82cd2d?q=80&w=360&auto=format&fit=content', 'https://images.unsplash.com/photo-1586798271654-0471bb1b0517?q=80&w=360&auto=format&fit=crop'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15'},
+        {title: 'Ремонт ванной комнаты и санузла', topImgs: ['https://images.unsplash.com/photo-1518201660989-894b770d6e3c?q=80&w=360&auto=format&fit=crop', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=360&auto=format'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15'},
+        {title: 'Ремонт ванной комнаты и санузла', topImgs: ['https://images.unsplash.com/photo-1574088151430-76c8239f290b?q=80&w=360&auto=format&fit=crop', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=360&auto=format'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15'},
+        {title: 'Ремонт ванной комнаты и санузла', topImgs: ['https://images.unsplash.com/photo-1553444835-65ddad82cd2d?q=80&w=360&auto=format&fit=content', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=360&auto=format'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15'},
+        {title: 'Ремонт ванной комнаты и санузла', topImgs: ['https://images.unsplash.com/photo-1553444835-65ddad82cd2d?q=80&w=360&auto=format&fit=content', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=360&auto=format'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15'}
+      ]
+    }
+  }
+ }
+</script>
 <template>
   <div class="portfolio">
       <h3>Примеры работ</h3>
       <div class="grid-container">
-        <div class="card-big">
+        <div class="card-big" v-for="(card, index) in cards" :key="index">
           <div class="pics-grid">
             <div class="top-imgs">
-              <div class="img"></div>
-              <div class="img"></div>
+              <div class="img" :style="{
+                backgroundImage: 'url(' + card.topImgs[0] + ')'} " style="background-size: cover;"><p>До</p></div>
+              <div class="img" :style="{
+                backgroundImage: 'url(' + card.topImgs[1] + ')'}" style="background-size: cover;"><p>После</p></div>
             </div>
             <div class="bottom-imgs">
-              <div class="img"></div>
-              <div class="img"></div>
-              <div class="img"></div>
+              <div class="img" :style="{
+                backgroundImage: 'url(' + card.bottomImgs[0] + ')'}" style="background-size: cover;"></div>
+              <div class="img" :style="{
+                backgroundImage: 'url(' + card.bottomImgs[1] + ')'}" style="background-size: cover;"></div>
+              <div class="img" :style="{
+                backgroundImage: 'url(' + card.bottomImgs[2] + ')'}" style="background-size: cover;"></div>
             </div>
           </div>
           <div class="card-content">
-            <h5>Ремонт санузла в стиле лофт</h5>
+            <h5> {{ card.title }} </h5>
             <div class="info">
-              <p><strong>4.2 m<sub>2</sub></strong> <br>площадь санузла</p>
+              <p><strong>4.2m2</strong> <br>площадь санузла</p>
               <p><strong>15 дней</strong> <br>сроки ремонта</p>
             </div>
-            <iframe width="250" height="120" src="https://www.youtube.com/embed/3PCsTfEbda0?si=B4j0B0LCKUI5lHL6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <a href="">Подробнее</a>
-          </div>
-        </div>
-        <div class="card-big">
-          <div class="pics-grid">
-            <div class="top-imgs">
-              <div class="img"></div>
-              <div class="img"></div>
-            </div>
-            <div class="bottom-imgs">
-              <div class="img"></div>
-              <div class="img"></div>
-              <div class="img"></div>
-            </div>
-          </div>
-          <div class="card-content">
-            <h5>Ремонт санузла в стиле лофт</h5>
-            <div class="info">
-              <p><strong>4.2 m<sub>2</sub></strong> <br>площадь санузла</p>
-              <p><strong>15 дней</strong> <br>сроки ремонта</p>
-            </div>
-            <iframe width="250" height="120" src="https://www.youtube.com/embed/3PCsTfEbda0?si=B4j0B0LCKUI5lHL6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <a href="">Подробнее</a>
-          </div>
-        </div>
-        <div class="card-big">
-          <div class="pics-grid">
-            <div class="top-imgs">
-              <div class="img"></div>
-              <div class="img"></div>
-            </div>
-            <div class="bottom-imgs">
-              <div class="img"></div>
-              <div class="img"></div>
-              <div class="img"></div>
-            </div>
-          </div>
-          <div class="card-content">
-            <h5>Ремонт санузла в стиле лофт</h5>
-            <div class="info">
-              <p><strong>4.2 m<sub>2</sub></strong> <br>площадь санузла</p>
-              <p><strong>15 дней</strong> <br>сроки ремонта</p>
-            </div>
-            <iframe width="250" height="120" src="https://www.youtube.com/embed/3PCsTfEbda0?si=B4j0B0LCKUI5lHL6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <a href="">Подробнее</a>
-          </div>
-        </div>
-        <div class="card-big">
-          <div class="pics-grid">
-            <div class="top-imgs">
-              <div class="img"></div>
-              <div class="img"></div>
-            </div>
-            <div class="bottom-imgs">
-              <div class="img"></div>
-              <div class="img"></div>
-              <div class="img"></div>
-            </div>
-          </div>
-          <div class="card-content">
-            <h5>Ремонт санузла в стиле лофт</h5>
-            <div class="info">
-              <p><strong>4.2 m<sub>2</sub></strong> <br>площадь санузла</p>
-              <p><strong>15 дней</strong> <br>сроки ремонта</p>
-            </div>
-            <iframe width="250" height="120" src="https://www.youtube.com/embed/3PCsTfEbda0?si=B4j0B0LCKUI5lHL6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <a href="">Подробнее</a>
-          </div>
-        </div>
-        <div class="card-big">
-          <div class="pics-grid">
-            <div class="top-imgs">
-              <div class="img"></div>
-              <div class="img"></div>
-            </div>
-            <div class="bottom-imgs">
-              <div class="img"></div>
-              <div class="img"></div>
-              <div class="img"></div>
-            </div>
-          </div>
-          <div class="card-content">
-            <h5>Ремонт санузла в стиле лофт</h5>
-            <div class="info">
-              <p><strong>4.2 m<sub>2</sub></strong> <br>площадь санузла</p>
-              <p><strong>15 дней</strong> <br>сроки ремонта</p>
-            </div>
-            <iframe width="250" height="120" src="https://www.youtube.com/embed/3PCsTfEbda0?si=B4j0B0LCKUI5lHL6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <a href="">Подробнее</a>
-          </div>
-        </div>
-        <div class="card-big">
-          <div class="pics-grid">
-            <div class="top-imgs">
-              <div class="img"></div>
-              <div class="img"></div>
-            </div>
-            <div class="bottom-imgs">
-              <div class="img"></div>
-              <div class="img"></div>
-              <div class="img"></div>
-            </div>
-          </div>
-          <div class="card-content">
-            <h5>Ремонт санузла в стиле лофт</h5>
-            <div class="info">
-              <p><strong>4.2 m<sub>2</sub></strong> <br>площадь санузла</p>
-              <p><strong>15 дней</strong> <br>сроки ремонта</p>
-            </div>
-            <iframe width="250" height="120" src="https://www.youtube.com/embed/3PCsTfEbda0?si=B4j0B0LCKUI5lHL6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="250" height="180" src="https://www.youtube.com/embed/3PCsTfEbda0?si=B4j0B0LCKUI5lHL6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <a href="">Подробнее</a>
           </div>
         </div>
@@ -168,7 +78,7 @@
   }
   .card-big .pics-grid{
     display: grid;
-    grid-template-rows: 2 fr 1fr;
+    grid-template-rows: 4fr 2fr;
   }
   .card-big .pics-grid .top-imgs{
     display: flex;
@@ -176,10 +86,26 @@
   }
   .card-big .pics-grid .top-imgs .img{
     width: 10vw;
-    height: 25vh;
-    margin: 0 10px;
-    border-radius: 20px;
-    background: linear-gradient(90deg, rgba(235,29,78,1) 0%, rgba(226,24,99,1) 41%, rgba(171,87,35,1) 100%);
+    height: 30vh;
+    margin: 0 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .card-big .pics-grid .top-imgs .img p {
+    text-align: center;
+    font-family: 'Montserrat';
+    color:white;
+    background-color: #D3B99F;
+    padding: 5px 0;
+    width: 100%;
+  }
+  .card-big .pics-grid .top-imgs .img:nth-child(2){
+    border-radius: 0 20px 20px 0;
+  }
+  .card-big .pics-grid .top-imgs .img:nth-child(1){
+    border-radius: 20px 0 0 20px;
   }
   .card-big .pics-grid .bottom-imgs {
     display: grid;
@@ -188,23 +114,24 @@
     margin-right: 20px;
   }
   .card-big .pics-grid .bottom-imgs .img{
-    background-color: #693030;
+    /* background-color: #693030; */
     border-radius: 20px;
   }
   .card-big .card-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: baseline;
   }
   .card-big .card-content h5{
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: 500;
-    margin: 10px 0;
+    margin: 0 0 30px 0;
   }
   .card-big .card-content .info {
     display: flex;
+    margin-bottom: 30px;
   }
   .card-big .card-content .info p{
     margin: 0 5px;
@@ -214,7 +141,9 @@
   .card-big .card-content  a{
     font-family: 'Montserrat';
     padding: 10px 12px;
-    margin-top: 10px;
+    margin-top: 20px;
+    width: 50%;
+    text-align: center;
     font-size: 0.9em;
     color: #DBAF15;
     background-color: #fff;
@@ -228,8 +157,31 @@
       grid-template-columns: 1fr;
       margin: 0 5vw;
     }
+    .portfolio h3 {
+      font-size: 2em;
+      margin: 100px 10px 20px 10px;
+    }
     .card-big {
       flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      padding: 25px 0;
+    }
+    .card-big .pics-grid .top-imgs{
+      margin: 0;
+    }
+    .card-big .pics-grid .top-imgs .img {
+    width: 45vw;
+    height: 30vh;
+    margin: 0 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    }
+    .card-big .pics-grid .bottom-imgs .img{
+    background-size: contain;
     }
   }
 </style>
