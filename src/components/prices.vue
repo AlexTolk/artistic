@@ -60,11 +60,12 @@
   }
   .prices-grid ul{
     list-style: none;
+    margin: 0;
   }
-  .prices-grid ul h3{
+  .prices-grid h3{
     font-family: 'Cormorant Garamond', serif;
     font-size: 2em;
-    margin: 0;
+    margin: 5vh;
   }
   .prices-grid ul li{
     display: flex;
@@ -80,6 +81,16 @@
     .prices .prices-grid {
       display: flex;
       flex-direction: column;
+      margin: 0;
+    }
+    .prices h3 {
+      margin: 20px 10px;
+      font-size: 2em;
+      text-align: start;
+    }
+    .prices .prices-grid ul {
+      margin: 10px;
+      padding: 0;
     }
   }
 </style>
