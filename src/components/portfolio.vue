@@ -167,6 +167,7 @@
       height: 80vh;
       width: 100vw;
       padding: 25px 0;
+      border-radius: 0;
     }
     .card-big .pics-grid .top-imgs{
       margin: 0;

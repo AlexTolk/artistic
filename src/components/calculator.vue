@@ -90,14 +90,18 @@
       <div class="radio-buttons">
         <h4>Тип санузла:</h4>
         <form>
-          <label for="combined">Совмещенный</label>
-          <input type="radio" name="type" id="combined" value="100" v-model="typePrice" @change="handleTypeChange">
-          <label for="split">Раздельный</label>
-          <input type="radio" name="type" id="split" value="200" v-model="typePrice" @change="handleTypeChange">
-          <label for="bathroom">Ванная комната</label>
-          <input type="radio" name="type" id="bathroom" value="300" v-model="typePrice" @change="handleTypeChange">
-          <label for="surface" id="sur">Площадь:</label>
-          <input type="number" v-model="surface" @input="handleSurfaceChange">
+          <label for="combined">Совмещенный
+            <input type="radio" name="type" id="combined" value="100" v-model="typePrice" @change="handleTypeChange">
+          </label>
+          <label for="split">Раздельный
+            <input type="radio" name="type" id="split" value="200" v-model="typePrice" @change="handleTypeChange">
+          </label>
+          <label for="bathroom">Ванная комната
+            <input type="radio" name="type" id="bathroom" value="300" v-model="typePrice" @change="handleTypeChange">
+          </label>
+          <label for="surface" id="sur"><strong>Площадь:</strong>
+            <input type="number" v-model="surface" @input="handleSurfaceChange">
+          </label>
         </form>
       </div>
       <div class="dropdowns">
@@ -133,15 +137,15 @@
         <h4>Дополнительные услуги</h4>
         <div class="extra-lists">
           <ul>
-            <li><label for="toilet">Подвесной унитаз</label><input type="checkbox" name="extra" id="toilet" v-model="extraServices.toilet" @change="handleCheckboxChange('toilet')"></li>
-            <li><label for="shower">Душевая кабина</label><input type="checkbox" name="extra" id="shower" v-model="extraServices.shower" @change="handleCheckboxChange('shower')"></li>
-            <li><label for="bidet">Гигиенический душ (биде)</label><input type="checkbox" name="extra" id="bidet" v-model="extraServices.bidet" @change="toggleService('bidet')"></li>
-            <li><label for="shelf">Конструкция из ГКП (ниши/полки)</label><input type="checkbox" name="extra" id="shelf" v-model="extraServices.shelf" @change="toggleService('shelf')"></li>
+            <li><input type="checkbox" name="extra" id="toilet" v-model="extraServices.toilet" @change="handleCheckboxChange('toilet')"><label for="toilet">Подвесной унитаз</label></li>
+            <li><input type="checkbox" name="extra" id="shower" v-model="extraServices.shower" @change="handleCheckboxChange('shower')"><label for="shower">Душевая кабина</label></li>
+            <li><input type="checkbox" name="extra" id="bidet" v-model="extraServices.bidet" @change="toggleService('bidet')"><label for="bidet">Гигиенический душ (биде)</label></li>
+            <li><input type="checkbox" name="extra" id="shelf" v-model="extraServices.shelf" @change="toggleService('shelf')"><label for="shelf">Конструкция из ГКП (ниши/полки)</label></li>
           </ul>
           <ul>
-            <li><label for="heated-floor">Теплый пол</label><input type="checkbox" name="extra" id="heated-floor" v-model="extraServices.heatedFloor" @change="toggleService('heatedFloor')"></li>
-            <li><label for="drain">Люк "неведимка" под плитку</label><input type="checkbox" name="extra" id="drain" v-model="extraServices.drain" @change="toggleService('drain')"></li>
-            <li><label for="heater">Водонагреватель</label><input type="checkbox" name="extra" id="heater" v-model="extraServices.heater" @change="toggleService('heater')"></li>
+            <li><input type="checkbox" name="extra" id="heated-floor" v-model="extraServices.heatedFloor" @change="toggleService('heatedFloor')"><label for="heated-floor">Теплый пол</label></li>
+            <li><input type="checkbox" name="extra" id="drain" v-model="extraServices.drain" @change="toggleService('drain')"><label for="drain">Люк "неведимка" под плитку</label></li>
+            <li><input type="checkbox" name="extra" id="heater" v-model="extraServices.heater" @change="toggleService('heater')"><label for="heater">Водонагреватель</label></li>
           </ul>
         </div>
       </div>
@@ -235,7 +239,7 @@
     font-family: 'Montserrat';
   }
   .calculator .extra-lists ul li label{
-    margin-right: 10px;
+    margin-left: 10px;
   }
   .calculator .extra-lists ul li input{
     transform: scale(2)
@@ -287,23 +291,37 @@
   }
 
   @media only screen and (max-width:600px) {
+
+    .calculator h3 {
+      margin: 5vh 5vw;
+      font-size: 2em;
+    }
     .calculator-container {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      justify-content: start;
+      align-items: start;
       max-width: 100vw;
+      margin-left: 10px;
     }
-    .radio-buttons {
+    .calculator .radio-buttons {
       flex-direction: column;
+      align-items: baseline;
     }
-    .radio-buttons form{
+    .calculator .radio-buttons form {
       display: flex;
       flex-direction: column;
+    }
+    .calculator .radio-buttons form label{
+     margin: 10px 0;
     }
     .dropdowns {
       flex-direction: column;
       max-width: 90vw;
+    }
+    .calculator .dropdowns .dropdown-item select{
+      margin-top: 10px;
+      margin-bottom: 20px;
     }
     .extra-lists {
       flex-direction: column;
@@ -320,6 +338,60 @@
       display: flex;
       flex-direction: column;
       max-width: 80vw;
+    }
+    .calculator .extra {
+      margin: 0;
+    }
+    .calculator .extra h4 {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      text-align: center;
+    }
+    .calculator .extra-lists {
+      display: flex;
+      justify-content: space-between;
+    }
+    .calculator .extra-lists ul {
+      padding: 0;
+    }
+    .calculator .extra-lists ul li{
+      font-family: 'Montserrat';
+    }
+    .calculator .extra-lists ul li label{
+      margin-left: 10px;
+    }
+    .calculator .extra-lists ul li input{
+      transform: scale(2)
+    }
+    .calculator .calc-form {
+      margin: 20px 0;
+      width:100vh;
+      border-radius: 0;
+      padding: 20px 15px;
+    }
+    .calculator .calc-form h3{
+      margin-bottom: 10px;
+    }
+    .calculator .calc-form .calc-form-content p{
+      width: 100%;
+    }
+    .calculator .calc-form .calc-form-content input {
+    margin: 15px 0;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    padding: 10px 0;
+    }
+    .calculator .calc-form .calc-form-content button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    color: #DBAF15;
+    background-color: #fff;
+    border: 3px solid #DBAF15;
+    border-radius: 20px;
+    /* box-shadow: 0 0 10px 1px #DBAF15; */
+    padding: 10px 5px;
     }
   }
 </style>
