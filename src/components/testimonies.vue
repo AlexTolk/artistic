@@ -138,5 +138,9 @@
     font-size: 1.2em;
     color: #fff;
     }
+    h3 {
+      margin: 50px auto;
+      font-size: 2em;
+    }
   }
 </style>
