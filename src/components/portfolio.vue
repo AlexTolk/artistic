@@ -164,7 +164,7 @@
     .card-big {
       flex-direction: column;
       align-items: center;
-      height: 100vh;
+      height: 80vh;
       width: 100vw;
       padding: 25px 0;
     }
@@ -173,15 +173,18 @@
     }
     .card-big .pics-grid .top-imgs .img {
     width: 45vw;
-    height: 30vh;
-    margin: 0 2px;
+    height: 25vh;
+    margin: 2px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     }
+    .card-big .pics-grid .bottom-imgs{
+     margin: 10px 0;
+    }
     .card-big .pics-grid .bottom-imgs .img{
-    background-size: contain;
+     display: block;
     }
   }
 </style>
