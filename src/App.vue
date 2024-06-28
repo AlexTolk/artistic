@@ -1,19 +1,6 @@
 <template>
   <header>
-    <nav>
-      <div class="logo">
-        <img src="https://cdn-icons-png.flaticon.com/512/184/184128.png" alt="">
-      </div>
-      <ul>
-        <li>Главная</li>
-        <li>Цены</li>
-        <li>Калькулятор ремонта</li>
-        <li>Примеры работ</li>
-        <li>Новости</li>
-        <li>Отзывы</li>
-      </ul>
-      <p><strong>+8(950) 019 - 19 - 19</strong></p>
-    </nav>
+    <navbar />
   </header>
   <main>
     <banner />
@@ -64,6 +51,7 @@
 </template>
 <script setup>
 
+  import navbar from './components/navbar.vue';
   import banner from './components/banner.vue';
   import pitch from './components/pitch.vue';
   import shortForm from './components/shortForm.vue';
@@ -78,31 +66,6 @@
 
 </script>
 <style scoped>
-  nav {
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    background-color: rgba(208,177,147, 0.8);
-    align-items: center;
-    justify-content: center;
-    color: #fff
-  }
-  nav .logo img{
-    height: 8vh;
-  }
-  nav ul {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-  }
-  nav ul li {
-    padding: 0 10px;
-    font-family: 'Montserrat', sans-serif;
-  }
-  nav ul li:hover {
-    border-bottom: 1px solid brown;
-    cursor: pointer;
-  }
   footer {
     display: flex;
     margin-top: 20vh;
@@ -126,11 +89,10 @@
   }
 
   @media only screen and (max-width: 600px) {
-    ul li{
-      display: none;
-    }
+
     footer {
       flex-direction: column;
     }
+
   }
 </style>

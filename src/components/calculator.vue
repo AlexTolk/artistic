@@ -365,7 +365,7 @@
     }
     .calculator .calc-form {
       margin: 20px 0;
-      width:100vh;
+      width:100vw;
       border-radius: 0;
       padding: 20px 15px;
     }
