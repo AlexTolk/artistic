@@ -1,53 +1,57 @@
 <template>
-  <header>
-    <navbar />
-  </header>
-  <main>
-    <banner />
-    <pitch />
-    <shortForm />
-    <services />
-    <portfolio />
-    <calculator />
-    <prices />
-    <description />
-    <testimonies />
-  </main>
-  <footer>
-    <div class="logo">
-      <h4>ARTISTIC</h4>
-      <p>Ремонт ванных комнат</p>
-    </div>
-    <div class="main-info">
-      <h4>ГЛАВНАЯ</h4>
-      <p>РЕМОНТ ВАННЫХ КОМНАТ</p>
-      <p>НАШИ УСЛУГИ</p>
-      <p>ФОТО РАБОТ</p>
-      <p>ВИДЕО РАБОТ</p>
-    </div>
-    <div class="help">
-      <h4>ПОМОЩЬ</h4>
-        <p>ЦЕНЫ</p>
-        <p>БЕСПЛАТНЫЙ ЗАМЕР</p>
-        <p>КОНТАКТЫ</p>
-    </div>
-    <div class="contact">
-      <div class="address">
-        <h4>НАШ АДРЕС</h4>
-        <p>Ремонт санузлов в Санкт-Петербурге</p>
-        <p>08:00 - 20:00 Без выходных</p>
+  <div id="app">
+
+    <header>
+      <navbar />
+      <RouterView />
+    </header>
+    <main>
+      <banner />
+      <pitch />
+      <shortForm />
+      <services />
+      <portfolio />
+      <calculator />
+      <prices />
+      <description />
+      <testimonies />
+    </main>
+    <footer>
+      <div class="logo">
+        <h4>ARTISTIC</h4>
+        <p>Ремонт ванных комнат</p>
       </div>
-      <div class="media">
-        <h4>МЫ В СОЦСЕТЯХ</h4>
-        <ul>
-          <li>🥸</li>
-          <li>🥸</li>
-          <li>🥸</li>
-          <li>🥸</li>
-        </ul>
+      <div class="main-info">
+        <h4>ГЛАВНАЯ</h4>
+        <p>РЕМОНТ ВАННЫХ КОМНАТ</p>
+        <p>НАШИ УСЛУГИ</p>
+        <p>ФОТО РАБОТ</p>
+        <p>ВИДЕО РАБОТ</p>
       </div>
-    </div>
-  </footer>
+      <div class="help">
+        <h4>ПОМОЩЬ</h4>
+          <p>ЦЕНЫ</p>
+          <p>БЕСПЛАТНЫЙ ЗАМЕР</p>
+          <p>КОНТАКТЫ</p>
+      </div>
+      <div class="contact">
+        <div class="address">
+          <h4>НАШ АДРЕС</h4>
+          <p>Ремонт санузлов в Санкт-Петербурге</p>
+          <p>08:00 - 20:00 Без выходных</p>
+        </div>
+        <div class="media">
+          <h4>МЫ В СОЦСЕТЯХ</h4>
+          <ul>
+            <li>🥸</li>
+            <li>🥸</li>
+            <li>🥸</li>
+            <li>🥸</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
 </template>
 <script setup>
 
@@ -61,6 +65,7 @@
   import prices from './components/prices.vue';
   import description from './components/description.vue';
   import testimonies from './components/testimonies.vue';
+
 
 
 

@@ -8,12 +8,11 @@
       </div>
     </div>
     <ul v-if="!mobileMenu">
-      <li>Главная</li>
-      <li>Цены</li>
-      <li>Калькулятор ремонта</li>
-      <li>Примеры работ</li>
-      <li>Новости</li>
-      <li>Отзывы</li>
+      <li><RouterLink to="/">Главная</RouterLink></li>
+      <li><RouterLink to="/prices">Цены</RouterLink></li>
+      <li><RouterLink to="/prices">Калькулятор ремонта</RouterLink></li>
+      <li><RouterLink to="/portfolio">Примеры работ</RouterLink></li>
+      <li><RouterLink to="/testimonies">Отзывы</RouterLink></li>
     </ul>
     <p><strong>+8(950) 019 - 19 - 19</strong></p>
     <div class="burger-menu" v-if="!mobileMenu" @click="toggleMobileMenu">
@@ -24,17 +23,17 @@
     </div>
   </nav>
   <ul v-if="mobileMenu" class="mobile-menu">
-    <li>Главная</li>
-    <li>Цены</li>
-    <li>Калькулятор ремонта</li>
-    <li>Примеры работ</li>
-    <li>Новости</li>
-    <li>Отзывы</li>
+    <li><RouterLink to="/">Главная</RouterLink></li>
+    <li><RouterLink to="/prices">Цены</RouterLink></li>
+    <li><RouterLink to="/prices">Калькулятор ремонта</RouterLink></li>
+    <li><RouterLink to="/portfolio">Примеры работ</RouterLink></li>
+    <li><RouterLink to="/testimonies">Отзывы</RouterLink></li>
   </ul>
 </template>
 
 <script>
   export default {
+    name: "Navbar",
     data() {
       return {
         mobileMenu: false
@@ -84,10 +83,12 @@
     margin: 0;
     padding: 0;
   }
-  nav ul li {
+  nav ul li a{
     padding: 0 10px;
     font-family: 'Montserrat', sans-serif;
     cursor: pointer;
+    color: #fff;
+    text-decoration: none;
   }
   nav ul li:hover {
     border-bottom: 1px solid brown;
