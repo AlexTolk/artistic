@@ -10,7 +10,7 @@
     <ul v-if="!mobileMenu">
       <li><RouterLink to="/">Главная</RouterLink></li>
       <li><RouterLink to="/prices">Цены</RouterLink></li>
-      <li><RouterLink to="/prices">Калькулятор ремонта</RouterLink></li>
+      <li><RouterLink to="/calculator">Калькулятор ремонта</RouterLink></li>
       <li><RouterLink to="/portfolio">Примеры работ</RouterLink></li>
       <li><RouterLink to="/testimonies">Отзывы</RouterLink></li>
     </ul>
