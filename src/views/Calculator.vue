@@ -24,19 +24,91 @@
           drain: 80,
           heater: 300,
         },
-        wallMaterial: 'tiles1',
-        floorMaterial: 'tiles1',
-        ceilingMaterial: 'tiles1',
+        wallMaterial: '',
+        floorMaterial: '',
+        ceilingMaterial: '',
         materialPrices: {
           tiles1: 50,
           tiles2: 70,
           tiles3: 90,
           tiles4: 110,
+        },
+        form: {
+          name: '',
+          phone: ''
+        },
+        errors: {
+          typePrice: '',
+          surface: '',
+          wallMaterial: '',
+          floorMaterial: '',
+          ceilingMaterial: '',
+          name: '',
+          phone: ''
         }
       };
     },
+    computed: {
+      isTypePriceValid() {
+        return this.typePrice > 0;
+      },
+      isSurfaceValid() {
+        return this.surface > 0;
+      },
+      isWallMaterialValid() {
+        return this.wallMaterial !== '';
+      },
+      isFloorMaterialValid() {
+        return this.floorMaterial !== '';
+      },
+      isCeilingMaterialValid() {
+        return this.ceilingMaterial !== '';
+      },
+      isNameValid() {
+        return this.form.name.trim() !== '';
+      },
+      isPhoneValid() {
+        const phoneRegex = /\+?(\d{1,3})?[-.\s]?(\(?\d{1,4}\)?)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/;
+        return phoneRegex.test(this.form.phone);
+      },
+      isFormValid() {
+        return this.isTypePriceValid && this.isSurfaceValid && this.isWallMaterialValid &&
+               this.isFloorMaterialValid && this.isCeilingMaterialValid && this.isNameValid &&
+               this.isPhoneValid;
+      },
+      validationErrors() {
+        const errors = {};
+        if (!this.isTypePriceValid) {
+          errors.typePrice = 'Выберите тип';
+        }
+        if (!this.isSurfaceValid) {
+          errors.surface = 'Введите площадь';
+        }
+        if (!this.isWallMaterialValid) {
+          errors.wallMaterial = 'Введите материал стены';
+        }
+        if (!this.isFloorMaterialValid) {
+          errors.floorMaterial = 'введте материал пола';
+        }
+        if (!this.isCeilingMaterialValid) {
+          errors.ceilingMaterial = 'Введите материал потолка';
+        }
+        if (!this.isNameValid) {
+          errors.name = 'имя обязательно';
+        }
+        if (!this.isPhoneValid) {
+          errors.phone = 'номер телефона обязателен';
+        }
+        return errors;
+      }
+    },
     methods: {
       calculatePrice() {
+        if (!this.isFormValid) {
+          this.errors = this.validationErrors;
+          return;
+        }
+
         let basePrice = parseInt(this.typePrice) || 0;
         let surfacePrice = this.surface * 50; // Assuming each square meter costs 50 units
 
@@ -65,6 +137,20 @@
       handleDropdownChange(event, materialType) {
         this[materialType] = event.target.value;
         this.calculatePrice();
+      },
+      handleCheckboxChange(service) {
+        this.extraServices[service] = !this.extraServices[service];
+        this.calculatePrice();
+      },
+      validateForm() {
+        this.errors = this.validationErrors;
+      },
+      handleFormSubmit(event) {
+        event.preventDefault();
+        this.validateForm();
+        if (this.isFormValid) {
+          alert('Форма отправлена! ' + this.price);
+        }
       }
     },
     watch: {
@@ -85,9 +171,9 @@
   <div class="calculator">
     <h3>Рассчитайте стоимость ремонта</h3>
     <div class="calculator-container">
-      <div class="radio-buttons">
-        <h4>Тип санузла:</h4>
-        <form>
+      <form @submit="handleFormSubmit">
+        <div class="radio-buttons">
+          <h4>Тип санузла:</h4>
           <label for="combined">Совмещенный
             <input type="radio" name="type" id="combined" value="100" v-model="typePrice" @change="handleTypeChange">
           </label>
@@ -100,68 +186,83 @@
           <label for="surface" id="sur"><strong>Площадь:</strong>
             <input type="number" v-model="surface" @input="handleSurfaceChange">
           </label>
-        </form>
-      </div>
-      <div class="dropdowns">
-        <div class="dropdown-item">
-          <label for="wall-select">Материал отделки стен</label>
-          <select name="walls" id="wall-select" v-model="wallMaterial" @change="handleDropdownChange($event, 'wallMaterial')">
-            <option value="tiles1">Плитка 1</option>
-            <option value="tiles2">Плитка 2</option>
-            <option value="tiles3">Плитка 3</option>
-            <option value="tiles4">Плитка 4</option>
-          </select>
         </div>
-        <div class="dropdown-item">
-          <label for="floor-select">Материал отделки пола</label>
-          <select name="floors" id="floor-select" v-model="floorMaterial" @change="handleDropdownChange($event, 'floorMaterial')">
-            <option value="tiles1">Плитка 1</option>
-            <option value="tiles2">Плитка 2</option>
-            <option value="tiles3">Плитка 3</option>
-            <option value="tiles4">Плитка 4</option>
-          </select>
+        <span v-if="errors.typePrice" class="error" style="margin: 0 0 0 30vw">{{ errors.typePrice }}</span>
+        <span v-if="errors.surface" class="error" style="margin: 0 0 0 65vw">{{ errors.surface }}</span>
+        <div class="dropdowns">
+          <div class="dropdown-item">
+            <label for="wall-select">Материал отделки стен</label>
+            <div v-if="errors.wallMaterial" class="error">{{ errors.wallMaterial }}</div>
+            <select name="walls" id="wall-select" v-model="wallMaterial" @change="handleDropdownChange($event, 'wallMaterial')">
+              <option value=""></option>
+              <option value="tiles1">Плитка 1</option>
+              <option value="tiles2">Плитка 2</option>
+              <option value="tiles3">Плитка 3</option>
+              <option value="tiles4">Плитка 4</option>
+            </select>
+          </div>
+          <div class="dropdown-item">
+            <label for="floor-select">Материал отделки пола</label>
+            <div v-if="errors.floorMaterial" class="error">{{ errors.floorMaterial }}</div>
+            <select name="floors" id="floor-select" v-model="floorMaterial" @change="handleDropdownChange($event, 'floorMaterial')">
+              <option value=""></option>
+              <option value="tiles1">Плитка 1</option>
+              <option value="tiles2">Плитка 2</option>
+              <option value="tiles3">Плитка 3</option>
+              <option value="tiles4">Плитка 4</option>
+            </select>
+          </div>
+          <div class="dropdown-item">
+            <label for="ceiling-select">Материал отделки потолка</label>
+            <div v-if="errors.ceilingMaterial" class="error">{{ errors.ceilingMaterial }}</div>
+            <select name="ceiling" id="ceiling-select" v-model="ceilingMaterial" @change="handleDropdownChange($event, 'ceilingMaterial')">
+              <option value=""></option>
+              <option value="tiles1">Плитка 1</option>
+              <option value="tiles2">Плитка 2</option>
+              <option value="tiles3">Плитка 3</option>
+              <option value="tiles4">Плитка 4</option>
+            </select>
+          </div>
         </div>
-        <div class="dropdown-item">
-          <label for="ceiling-select">Материал отделки потолка</label>
-          <select name="ceiling" id="ceiling-select" v-model="ceilingMaterial" @change="handleDropdownChange($event, 'ceilingMaterial')">
-            <option value="tiles1">Плитка 1</option>
-            <option value="tiles2">Плитка 2</option>
-            <option value="tiles3">Плитка 3</option>
-            <option value="tiles4">Плитка 4</option>
-          </select>
+        <div class="extra">
+          <h4>Дополнительные услуги</h4>
+          <div class="extra-lists">
+            <ul>
+              <li><input type="checkbox" name="extra" id="toilet" v-model="extraServices.toilet" @change="handleCheckboxChange('toilet')"><label for="toilet">Подвесной унитаз</label></li>
+              <li><input type="checkbox" name="extra" id="shower" v-model="extraServices.shower" @change="handleCheckboxChange('shower')"><label for="shower">Душевая кабина</label></li>
+              <li><input type="checkbox" name="extra" id="bidet" v-model="extraServices.bidet" @change="handleCheckboxChange('bidet')"><label for="bidet">Гигиенический душ</label></li>
+              <li><input type="checkbox" name="extra" id="shelf" v-model="extraServices.shelf" @change="handleCheckboxChange('shelf')"><label for="shelf">Полка для ванны</label></li>
+            </ul>
+            <ul>
+              <li><input type="checkbox" name="extra" id="heatedFloor" v-model="extraServices.heatedFloor" @change="handleCheckboxChange('heatedFloor')"><label for="heatedFloor">Теплый пол</label></li>
+              <li><input type="checkbox" name="extra" id="drain" v-model="extraServices.drain" @change="handleCheckboxChange('drain')"><label for="drain">Люк "неведимка" под плитку</label></li>
+              <li><input type="checkbox" name="extra" id="heater" v-model="extraServices.heater" @change="handleCheckboxChange('heater')"><label for="heater">Водонагреватель</label></li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="extra">
-        <h4>Дополнительные услуги</h4>
-        <div class="extra-lists">
-          <ul>
-            <li><input type="checkbox" name="extra" id="toilet" v-model="extraServices.toilet" @change="handleCheckboxChange('toilet')"><label for="toilet">Подвесной унитаз</label></li>
-            <li><input type="checkbox" name="extra" id="shower" v-model="extraServices.shower" @change="handleCheckboxChange('shower')"><label for="shower">Душевая кабина</label></li>
-            <li><input type="checkbox" name="extra" id="bidet" v-model="extraServices.bidet" @change="toggleService('bidet')"><label for="bidet">Гигиенический душ (биде)</label></li>
-            <li><input type="checkbox" name="extra" id="shelf" v-model="extraServices.shelf" @change="toggleService('shelf')"><label for="shelf">Конструкция из ГКП (ниши/полки)</label></li>
-          </ul>
-          <ul>
-            <li><input type="checkbox" name="extra" id="heated-floor" v-model="extraServices.heatedFloor" @change="toggleService('heatedFloor')"><label for="heated-floor">Теплый пол</label></li>
-            <li><input type="checkbox" name="extra" id="drain" v-model="extraServices.drain" @change="toggleService('drain')"><label for="drain">Люк "неведимка" под плитку</label></li>
-            <li><input type="checkbox" name="extra" id="heater" v-model="extraServices.heater" @change="toggleService('heater')"><label for="heater">Водонагреватель</label></li>
-          </ul>
+        <div class="calc-form">
+          <h3>Осталось заполнить форму</h3>
+          <div class="calc-form-content">
+            <p>Вы узнаете стоимость ремонта и получите скидку 10%</p>
+            <div class="input-error">
+              <input type="text" name="name" id="name" v-model="form.name" placeholder="Ваше имя">
+              <span v-if="errors.name" class="error">{{ errors.name }}</span>
+            </div>
+            <div class="input-error">
+              <input type="tel" name="phone" id="phone" v-model="form.phone" placeholder="Номер телефона">
+              <span v-if="errors.phone" class="error">{{ errors.phone }}</span>
+            </div>
+            <button :disabled="!isFormValid">Рассчитать стоимость</button>
+          </div>
         </div>
-      </div>
-      <div class="calc-form">
-        <h3>Осталось заполнить форму</h3>
-        <div class="calc-form-content">
-          <p>Вы узнаете стоимость ремонта и получите скидку 10%</p>
-          <input type="text" name="name" id="name">
-          <input type="tel" name="phone" id="phone">
-          <button>Рассчитать стоимость</button>
-        </div>
-      </div>
+      </form>
     </div>
   </div>
 </template>
+
 <style>
-  .calculator{
-    margin: 10vh 0;
+  .calculator {
+    margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -169,6 +270,7 @@
   }
 
   .calculator h3 {
+    margin: 50px auto;
     font-family: 'Cormorant Garamond', serif;
     font-size: 2.8em;
     font-weight: 500;
@@ -183,7 +285,7 @@
     font-family: 'Montserrat', sans-serif;
 
   }
-  .calculator .radio-buttons form input{
+  .calculator .radio-buttons input {
     padding: 10px;
     margin: 0 10px;
     background: #d0b194b7;
@@ -191,7 +293,7 @@
     border-radius: 10px;
     font-family: 'Montserrat', sans-serif;
   }
-  .calculator .radio-buttons form label{
+  .calculator .radio-buttons label {
     padding: 0 5px;
     margin: 0 10px;
     font-family: 'Montserrat', sans-serif;
@@ -202,16 +304,16 @@
     align-content: center;
     margin: 5vh 0;
   }
-  .calculator  .dropdowns .dropdown-item {
+  .calculator .dropdowns .dropdown-item {
     display: flex;
     flex-direction: column;
   }
-  .calculator .dropdowns .dropdown-item label{
+  .calculator .dropdowns .dropdown-item label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
   }
 
-  .calculator .dropdowns .dropdown-item select{
+  .calculator .dropdowns .dropdown-item select {
     font-family: 'Montserrat', sans-serif;
     margin-top: 3vh;
     font-weight: 300;
@@ -232,14 +334,14 @@
   .calculator .extra-lists {
     display: flex;
   }
-  .calculator .extra-lists ul li{
+  .calculator .extra-lists ul li {
     padding: 5px;
     font-family: 'Montserrat';
   }
-  .calculator .extra-lists ul li label{
+  .calculator .extra-lists ul li label {
     margin-left: 10px;
   }
-  .calculator .extra-lists ul li input{
+  .calculator .extra-lists ul li input {
     transform: scale(2)
   }
   .calculator .calc-form {
@@ -288,6 +390,20 @@
     cursor: pointer;
   }
 
+  .error {
+    color: red;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+  }
+  .input-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  /* mobile view */
+
   @media only screen and (max-width:600px) {
 
     .calculator h3 {
@@ -310,14 +426,14 @@
       display: flex;
       flex-direction: column;
     }
-    .calculator .radio-buttons form label{
+    .calculator .radio-buttons form label {
      margin: 10px 0;
     }
     .dropdowns {
       flex-direction: column;
       max-width: 90vw;
     }
-    .calculator .dropdowns .dropdown-item select{
+    .calculator .dropdowns .dropdown-item select {
       margin-top: 10px;
       margin-bottom: 20px;
     }
@@ -326,7 +442,7 @@
     }
     .calc-form {
       padding: 0;
-      margin:0;
+      margin: 0;
       max-width: 100vw;
     }
     .calculator .calc-form h3 {
@@ -352,44 +468,44 @@
     .calculator .extra-lists ul {
       padding: 0;
     }
-    .calculator .extra-lists ul li{
+    .calculator .extra-lists ul li {
       font-family: 'Montserrat';
     }
-    .calculator .extra-lists ul li label{
+    .calculator .extra-lists ul li label {
       margin-left: 10px;
     }
-    .calculator .extra-lists ul li input{
+    .calculator .extra-lists ul li input {
       transform: scale(2)
     }
     .calculator .calc-form {
       margin: 20px 0;
-      width:100vw;
+      width: 100vw;
       border-radius: 0;
       padding: 20px 15px;
     }
-    .calculator .calc-form h3{
+    .calculator .calc-form h3 {
       margin-bottom: 10px;
     }
-    .calculator .calc-form .calc-form-content p{
+    .calculator .calc-form .calc-form-content p {
       width: 100%;
     }
     .calculator .calc-form .calc-form-content input {
-    margin: 15px 0;
-    border-radius: 10px;
-    border: none;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2em;
-    padding: 10px 0;
+      margin: 15px 0;
+      border-radius: 10px;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2em;
+      padding: 10px 0;
     }
     .calculator .calc-form .calc-form-content button {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2em;
-    color: #DBAF15;
-    background-color: #fff;
-    border: 3px solid #DBAF15;
-    border-radius: 20px;
-    /* box-shadow: 0 0 10px 1px #DBAF15; */
-    padding: 10px 5px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2em;
+      color: #DBAF15;
+      background-color: #fff;
+      border: 3px solid #DBAF15;
+      border-radius: 20px;
+      /* box-shadow: 0 0 10px 1px #DBAF15; */
+      padding: 10px 5px;
     }
   }
 </style>

@@ -3,8 +3,8 @@
 
     <header>
       <navbar />
-      <RouterView />
     </header>
+    <RouterView />
     <main>
       <banner />
       <pitch />
@@ -53,6 +53,7 @@
     </footer>
   </div>
 </template>
+
 <script setup>
 
   import navbar from './components/navbar.vue';
@@ -65,11 +66,10 @@
   import prices from './components/prices.vue';
   import description from './components/description.vue';
   import testimonies from './components/testimonies.vue';
-
-
-
+  import { RouterView } from 'vue-router';
 
 </script>
+
 <style scoped>
   footer {
     display: flex;
