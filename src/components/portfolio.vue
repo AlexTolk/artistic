@@ -3,13 +3,19 @@
   data() {
     return {
       cards: [
-        {title: 'Ремонт санузла в стиле лофт', topImgs: ['https://images.unsplash.com/photo-1595579987159-32ca7b85e0e2?q=80&w=360&auto=format&fit=cover', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=360&auto=format&fit=contain'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15'},
-        {title: 'Ремонт ванной комнаты и санузла', topImgs: ['https://images.unsplash.com/photo-1553444835-65ddad82cd2d?q=80&w=360&auto=format&fit=content', 'https://images.unsplash.com/photo-1586798271654-0471bb1b0517?q=80&w=360&auto=format&fit=crop'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15'},
-        {title: 'Ремонт ванной комнаты и санузла', topImgs: ['https://images.unsplash.com/photo-1518201660989-894b770d6e3c?q=80&w=360&auto=format&fit=crop', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=360&auto=format'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15'},
-        {title: 'Ремонт ванной комнаты и санузла', topImgs: ['https://images.unsplash.com/photo-1574088151430-76c8239f290b?q=80&w=360&auto=format&fit=crop', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=360&auto=format'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15'},
-        {title: 'Ремонт ванной комнаты и санузла', topImgs: ['https://images.unsplash.com/photo-1553444835-65ddad82cd2d?q=80&w=360&auto=format&fit=content', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=360&auto=format'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15'},
-        {title: 'Ремонт ванной комнаты и санузла', topImgs: ['https://images.unsplash.com/photo-1553444835-65ddad82cd2d?q=80&w=360&auto=format&fit=content', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=360&auto=format'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15'}
-      ]
+        {title: 'Ремонт санузла в стиле лофт', topImgs: ['https://images.unsplash.com/photo-1595579987159-32ca7b85e0e2?q=80&w=360&auto=format&fit=cover', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=360&auto=format&fit=contain'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15', showModal: false},
+        {title: 'Ремонт ванной комнаты и санузла', topImgs: ['https://images.unsplash.com/photo-1553444835-65ddad82cd2d?q=80&w=360&auto=format&fit=content', 'https://images.unsplash.com/photo-1586798271654-0471bb1b0517?q=80&w=360&auto=format&fit=crop'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15', showModal: false},
+        {title: 'Ремонт ванной комнаты и санузла', topImgs: ['https://images.unsplash.com/photo-1518201660989-894b770d6e3c?q=80&w=360&auto=format&fit=crop', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=360&auto=format'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15', showModal: false},
+        {title: 'Ремонт ванной комнаты и санузла', topImgs: ['https://images.unsplash.com/photo-1574088151430-76c8239f290b?q=80&w=360&auto=format&fit=crop', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=360&auto=format'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15', showModal: false},
+        {title: 'Ремонт ванной комнаты и санузла', topImgs: ['https://images.unsplash.com/photo-1553444835-65ddad82cd2d?q=80&w=360&auto=format&fit=content', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=360&auto=format'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15', showModal: false},
+        {title: 'Ремонт ванной комнаты и санузла', topImgs: ['https://images.unsplash.com/photo-1553444835-65ddad82cd2d?q=80&w=360&auto=format&fit=content', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=360&auto=format'], bottomImgs: ['https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format', 'https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=360&auto=format'], surface: '4.2', duration: '15', showModal: false}
+      ],
+      modal: false
+    }
+  },
+  methods: {
+    toggleModal(index) {
+      this.cards[index].showModal = !this.cards[index].showModal;
     }
   }
  }
@@ -42,7 +48,31 @@
               <p><strong>15 дней</strong> <br>сроки ремонта</p>
             </div>
             <iframe width="250" height="180" src="https://www.youtube.com/embed/3PCsTfEbda0?si=B4j0B0LCKUI5lHL6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <a href="">Подробнее</a>
+            <a href="" @click.prevent="toggleModal(index)">Подробнее</a>
+          </div>
+          <div class="modal" v-if="card.showModal">
+            <div class="close" @click="toggleModal(index)">&times;</div>
+            <div class="modal-top">
+              <h2>{{ card.title }}</h2>
+              <p><strong>4.2m2</strong> <br>площадь санузла</p>
+              <p><strong>15 дней</strong> <br>сроки ремонта</p>
+            </div>
+            <div class="modal-grid">
+              <div class="img" :style="{backgroundImage: 'url(' + card.topImgs[1] + ')'}" style="background-size: cover;"></div>
+              <div class="img" :style="{
+                backgroundImage: 'url(' + card.bottomImgs[0] + ')'}" style="background-size: cover;"></div>
+              <div class="img" :style="{
+                backgroundImage: 'url(' + card.bottomImgs[1] + ')'}" style="background-size: cover;"></div>
+              <div class="img" :style="{
+                backgroundImage: 'url(' + card.bottomImgs[2] + ')'}" style="background-size: cover;"></div>
+              <iframe width="480" height="200" src="https://www.youtube.com/embed/3PCsTfEbda0?si=B4j0B0LCKUI5lHL6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              <div class="img" :style="{
+                backgroundImage: 'url(' + card.bottomImgs[0] + ')'}" style="background-size: cover;"></div>
+              <div class="img" :style="{
+                backgroundImage: 'url(' + card.bottomImgs[1] + ')'}" style="background-size: cover;"></div>
+              <div class="img" :style="{
+                backgroundImage: 'url(' + card.bottomImgs[2] + ')'}" style="background-size: cover;"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -67,6 +97,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     margin: 0 5vw;
+    position: relative;
   }
   .card-big {
     display: flex;
@@ -150,6 +181,37 @@
     border: 2px solid #DBAF15;
     box-shadow: 0 0 10px 3px #DBAF15;
     border-radius: 50px;
+  }
+  .modal {
+    position: absolute;
+    left: 50px;
+    top: 10px;
+    height: 90vh;
+    width: 80vw;
+    background: #F2E5D5;
+    background: linear-gradient(270deg, #F2E5D5, #FFFFFF);
+    border-radius: 20px;
+    box-shadow: 5px 5px 50px 15px #4f4545;
+  }
+  .modal .close {
+    font-size: 2em;
+    width: 98%;
+    text-align: end;
+    cursor: pointer;
+  }
+  .modal-top {
+    display: flex;
+    justify-content: space-around;
+  }
+  .modal-grid {
+    margin: 0 100px;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 15px;
+  }
+  .modal-grid .img {
+    border-radius: 20px;
   }
   @media only screen and (max-width: 600px) {
     .portfolio .grid-container {

@@ -65,7 +65,8 @@
         return this.ceilingMaterial !== '';
       },
       isNameValid() {
-        return this.form.name.trim() !== '';
+        const nameRegex = /^[A-Za-z\s]{3,}$/;
+        return nameRegex.test(this.form.name.trim());
       },
       isPhoneValid() {
         const phoneRegex = /\+?(\d{1,3})?[-.\s]?(\(?\d{1,4}\)?)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/;
@@ -94,7 +95,7 @@
           errors.ceilingMaterial = 'Введите материал потолка';
         }
         if (!this.isNameValid) {
-          errors.name = 'имя обязательно';
+          errors.name = 'Введите имя (от 2 символов)';
         }
         if (!this.isPhoneValid) {
           errors.phone = 'номер телефона обязателен';
@@ -187,7 +188,7 @@
             <input type="number" v-model="surface" @input="handleSurfaceChange">
           </label>
         </div>
-        <span v-if="errors.typePrice" class="error" style="margin: 0 0 0 30vw">{{ errors.typePrice }}</span>
+        <span v-if="errors.typePrice" class="error" style="margin: 0 0 0 25vw">{{ errors.typePrice }}</span>
         <span v-if="errors.surface" class="error" style="margin: 0 0 0 65vw">{{ errors.surface }}</span>
         <div class="dropdowns">
           <div class="dropdown-item">
@@ -245,7 +246,7 @@
           <div class="calc-form-content">
             <p>Вы узнаете стоимость ремонта и получите скидку 10%</p>
             <div class="input-error">
-              <input type="text" name="name" id="name" v-model="form.name" placeholder="Ваше имя">
+              <input type="text" minlength="2" name="name" id="name" v-model="form.name" placeholder="Ваше имя">
               <span v-if="errors.name" class="error">{{ errors.name }}</span>
             </div>
             <div class="input-error">
@@ -261,6 +262,10 @@
 </template>
 
 <style>
+  span {
+    text-wrap: wrap;
+    max-width: 300px;
+  }
   .calculator {
     margin: 0;
     display: flex;
