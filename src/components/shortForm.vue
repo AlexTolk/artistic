@@ -1,8 +1,8 @@
 <template>
   <div class="short-form-section">
-      <h3>Рассчитайте стоимость санузла быстро <div class="underlined">и легко со скидкой <strong>5000 рублей</strong></div id="underlined"></h3>
-      <div class="img-form">
-        <div class="img">
+      <h3 v-motion-slide-visible-right>Рассчитайте стоимость санузла быстро <div class="underlined">и легко со скидкой <strong>5000 рублей</strong></div id="underlined"></h3>
+      <div class="img-form" v-motion-slide-visible-bottom>
+        <div class="img" v-motion-slide-visible-left>
           <img src="https://images.unsplash.com/photo-1596180737956-00cb917e382b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         </div>
         <form>

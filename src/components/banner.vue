@@ -3,9 +3,9 @@
 </script>
 <template>
   <div class="banner">
-      <h1>ARTISTIC</h1>
-      <h4>Бережный и аккуратный ремонт для вашей ванной</h4>
-    </div>
+    <h1 v-motion-slide-visible-top>ARTISTIC</h1>
+    <h4 v-motion-slide-visible-bottom>Бережный и аккуратный ремонт для вашей ванной</h4>
+  </div>
 </template>
 <style>
   .banner {

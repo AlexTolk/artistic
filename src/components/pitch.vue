@@ -3,7 +3,7 @@
 </script>
 <template>
   <div class="pitch">
-      <h6>Почему выбирают нас</h6>
+      <h6 v-motion-slide-visible-left>Почему выбирают нас</h6>
       <h4>Мы работаем только в Санкт-Петербурге. Благодаря этому мы поддерживаем качество и не распыляемся</h4>
       <hr>
       <div class="pitch-points">

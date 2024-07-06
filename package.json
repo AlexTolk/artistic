@@ -10,9 +10,14 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@vueuse/motion": "^2.2.3",
+    "gsap": "^3.12.5",
+    "intersection-observer": "^0.12.2",
     "swiper": "^11.1.4",
     "vue": "^3.4.21",
-    "vue-router": "^4.0.13"
+    "vue-page-transition": "^0.2.2",
+    "vue-router": "^4.0.13",
+    "vue3-smooth-scroll": "^0.8.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

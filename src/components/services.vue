@@ -24,7 +24,7 @@
   <div class="services">
     <h3>Виды работ</h3>
     <div class="services-grid">
-      <div class="card"  v-for="(service, index) in services" :style="{
+      <div class="card" v-motion-roll v-for="(service, index) in services" :style="{
             backgroundImage: 'url(' + service.url + ')'}">
           <p>{{ service.description }}</p>
       </div>

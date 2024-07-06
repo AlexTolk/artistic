@@ -24,7 +24,7 @@
   <div class="portfolio">
       <h3>Примеры работ</h3>
       <div class="grid-container">
-        <div class="card-big" v-for="(card, index) in cards" :key="index">
+        <div class="card-big" v-for="(card, index) in cards" :key="index" v-motion-pop-visible>
           <div class="pics-grid">
             <div class="top-imgs">
               <div class="img" :style="{

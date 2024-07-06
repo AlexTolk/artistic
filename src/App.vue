@@ -1,20 +1,19 @@
 <template>
   <div id="app">
-
     <header>
       <navbar />
     </header>
-    <RouterView />
+    <router-view/>
     <main>
-      <banner />
-      <pitch />
+      <banner/>
+      <pitch v-motion-slide-visible-once-right />
       <shortForm />
-      <services />
-      <portfolio />
-      <calculator />
-      <prices />
-      <description />
-      <testimonies />
+      <services v-motion-pop-visible />
+      <portfolio  />
+      <calculator v-motion-pop-visible />
+      <prices v-motion-slide-visible-once-right  />
+      <description v-motion-slide-visible-once-left  />
+      <testimonies v-motion-slide-visible-once-right  />
     </main>
     <footer>
       <div class="logo">
@@ -30,9 +29,9 @@
       </div>
       <div class="help">
         <h4>ПОМОЩЬ</h4>
-          <p>ЦЕНЫ</p>
-          <p>БЕСПЛАТНЫЙ ЗАМЕР</p>
-          <p>КОНТАКТЫ</p>
+        <p>ЦЕНЫ</p>
+        <p>БЕСПЛАТНЫЙ ЗАМЕР</p>
+        <p>КОНТАКТЫ</p>
       </div>
       <div class="contact">
         <div class="address">
@@ -54,23 +53,9 @@
   </div>
 </template>
 
-<script setup>
-
-  import navbar from './components/navbar.vue';
-  import banner from './components/banner.vue';
-  import pitch from './components/pitch.vue';
-  import shortForm from './components/shortForm.vue';
-  import services from './components/services.vue';
-  import portfolio from './components/portfolio.vue';
-  import calculator from './components/calculator.vue';
-  import prices from './components/prices.vue';
-  import description from './components/description.vue';
-  import testimonies from './components/testimonies.vue';
-  import { RouterView } from 'vue-router';
-
-</script>
 
 <style scoped>
+
   footer {
     display: flex;
     margin-top: 20vh;
@@ -79,12 +64,15 @@
     font-family: 'Montserrat', sans-serif;
     background-color: #FDFBF8;
   }
+
   footer .logo h4{
     margin-bottom: 10px;
   }
+
   footer .logo p{
     margin-top: 0;
   }
+
   footer .media ul {
     display: flex;
     list-style: none;
@@ -94,10 +82,38 @@
   }
 
   @media only screen and (max-width: 600px) {
-
     footer {
       flex-direction: column;
     }
-
   }
 </style>
+
+
+<script setup>
+import navbar from './components/navbar.vue';
+import banner from './components/banner.vue';
+import pitch from './components/pitch.vue';
+import shortForm from './components/shortForm.vue';
+import services from './components/services.vue';
+import portfolio from './components/portfolio.vue';
+import calculator from './components/calculator.vue';
+import prices from './components/prices.vue';
+import description from './components/description.vue';
+import testimonies from './components/testimonies.vue';
+import { RouterView } from 'vue-router';
+import gsap from 'gsap'
+
+function beforeEnter(el) {
+  el.style.opacity = '0'
+  el.style.transform = 'translateY(-100px)'
+}
+function enter(el, done) {
+  gsap.to(el, {
+    scrollTrigger: el,
+    duration: 1,
+    y: 0,
+    opacity: 1,
+    onComplete: done
+  })
+}
+</script>
